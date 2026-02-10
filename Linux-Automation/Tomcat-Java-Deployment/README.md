@@ -23,4 +23,15 @@ During deployment, I encountered a `Connection Refused` error even though Tomcat
 ## 🧠 Key Takeaway
 Configuration hierarchy matters. In Tomcat, the `<Connector>` element is the entry point for external web traffic, whereas the `<Server>` port is for internal management.
 
+
+graph LR
+    User((User/Curl)) -->|Port 5004| Firewall{Firewall}
+    Firewall -->|Allowed| Tomcat[Tomcat Server]
+    subgraph App Server 3
+    Tomcat -->|Connector| ROOT[ROOT.war Application]
+    end
+
+
+
+
 <img width="721" height="530" alt="tomcat" src="https://github.com/user-attachments/assets/8a82ba6b-a012-4aec-ae31-169fab2342e6" />
